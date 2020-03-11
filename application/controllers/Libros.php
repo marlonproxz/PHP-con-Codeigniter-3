@@ -25,6 +25,7 @@ class Libros extends CI_Controller {
         //Titulo
         $data['titulo_sitio'] = 'Crud libros v. 1.0.0';
         $data['titulo_pagina'] = 'Lista de libros';
+        $data['libros'] = $this->libros->listarLibros();
 
         $this->load->view('layout/header', $data);
         $this->load->view('libros/view_listar');
@@ -32,6 +33,8 @@ class Libros extends CI_Controller {
     }
     
     public function adicionar(){
+        $data['titulo_sitio'] = 'Crud libros v. 1.0.0';
+        $data['titulo_pagina'] = 'Nuevo libro';
         
         $this->load->view('layout/header', $data);
         $this->load->view('libros/view_adicionar');
@@ -40,6 +43,8 @@ class Libros extends CI_Controller {
     }
     
     public function editar($id=NULL){
+        $data['titulo_sitio'] = 'Crud libros v. 1.0.0';
+        $data['titulo_pagina'] = 'Actualizar libro';
         
         $this->load->view('layout/header', $data);
         $this->load->view('libros/view_editar');

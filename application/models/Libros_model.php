@@ -9,32 +9,41 @@ class Libros_model extends CI_Model
 		parent::__construct();
 	}
 
+        // LISTA TODO LIBROS REGISTRADOS
 	public function listarLibros()
 	{
-		//$this->db->where('autor_libro', 'Clayton');
-		$this->db->order_by('nombre_libro', 'asc');
-		$query = $this->db->get('libros');
-		return $query->result();
+            return $this->db->get('libros')->result();
 	}
+        
+        // REGISTRAR LIBROS
+        public function registrarLibro($datos=NULL){
+            if(is_array($datos)){
+                $this->db->insert('libros', $datos);
+            }
+        }
 
-	public function getById($id = NULL){
-
-		if($id){
-
-			/*
-			$this->db->where('id', $id);
-			$this->db->limit(1);
-			$query = $this->db->get('libros');
-			return $query->row()*/
-
-			$this->db->select('libros.*, resumen.resumen');
-			$this->db->from('libros');
-			$this->db->join('resumen', 'libros.id = resumen.id_libro', 'left');
-			$this->db->where('libros.id', $id);
-			$this->db->limit(1);
-			$query = $this->db->get();
-			return $query->row();
-
-		}
+        // CAPTURAR UN DETERMINADO LIBRO POR ID
+	public function capturaLibroID($id = NULL){
+            if($id){
+                $this->db->where('id', $id);
+                $this->db->limit(1);
+                return $this->db->get('libros')->row();
+            }
+            
 	}
+        
+        // ACTUALIZAR LIBRO
+        public function actualizaLibro($datos=NULL, $condicion=NULL){
+            if(is_array($datos) && is_array($condicion)){
+                $this->db->update('libros', $datos, $condicion);
+            }
+        }
+
+        // ELIMINAR UN LIBRO
+        
+        public function eliminarLibro($id=NULL){
+            if($id){
+                $this->db->delete('libros', ['id' => $id]);
+            }
+        }
 }

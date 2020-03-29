@@ -29,12 +29,12 @@
                             ]) ?>
                         </div>
                         <div class="form-group">
-                            <?= form_label('Valor') ?>
+                            <?= form_label('Precio') ?>
                             <?= form_input([
                                 'type'        => 'text', 
                                 'class'       => 'form-control', 
-                                'name'        => 'valor', 
-                                'placeholder' => 'Valor de libro'
+                                'name'        => 'precio', 
+                                'placeholder' => 'Precio de libro'
                             ]) ?>
                         </div>
                     

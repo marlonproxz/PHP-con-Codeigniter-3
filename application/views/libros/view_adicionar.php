@@ -9,6 +9,12 @@
           
           <section class="row">
           	<div class="col-12 col-sm-12">
+                    <?= validation_errors('<div class="alert alert-danger" role="alert">','</div>'); ?>
+          	</div>
+          </section>
+          
+          <section class="row">
+          	<div class="col-12 col-sm-12">
                     <?= form_open() ?>
                         <div class="form-group">
                             <?= form_label('Título') ?>

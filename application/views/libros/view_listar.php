@@ -9,6 +9,12 @@
 
     <section class="row">
         <div class="col-12 col-sm-12">
+            <?= $this->session->userdata('msg'); ?>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-12 col-sm-12">
             <table class="table" id="table_ismweb_listar">
                 <thead>
                     <tr>
@@ -29,12 +35,12 @@
                             <td class="text-right"><?= $l->precio ?></td>
                             <td class="text-center"><?= ($l->activo == 1 ? '<span class="badge badge-success">Activo</span>' : '<span class="badge badge-danger">Inactivo</span>'); ?></td>
                             <td class="text-right">
-                                <?= anchor('libros/editar/'.$l->id, 'Editar', ['title' => 'Editar', 'class' => 'btn btn-primary']); ?>
-                                <?= anchor('libros/eliminar/'.$l->id, 'Eliminar', ['title' => 'Eliminar', 'class' => 'btn btn-danger']); ?>
-                                <?php if($l->activo == 1){ ?>
-                                    <?= anchor('libros/inactivo/'.$l->id, 'Desactivar', ['title' => 'Desactivar', 'class' => 'btn btn-info']); ?>
+                                <?= anchor('libros/editar/' . $l->id, 'Editar', ['title' => 'Editar', 'class' => 'btn btn-primary']); ?>
+                                <?= anchor('libros/eliminar/' . $l->id, 'Eliminar', ['title' => 'Eliminar', 'class' => 'btn btn-danger']); ?>
+                                <?php if ($l->activo == 1) { ?>
+                                    <?= anchor('libros/inactivo/' . $l->id, 'Desactivar', ['title' => 'Desactivar', 'class' => 'btn btn-info']); ?>
                                 <?php } else { ?>
-                                    <?= anchor('libros/activo/'.$l->id, 'Activar', ['title' => 'Activar', 'class' => 'btn btn-info']); ?>
+                                    <?= anchor('libros/activo/' . $l->id, 'Activar', ['title' => 'Activar', 'class' => 'btn btn-info']); ?>
                                 <?php } ?>
                             </td>
                         </tr>

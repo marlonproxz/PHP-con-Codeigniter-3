@@ -3,7 +3,13 @@
 
           <section class="row mt-3 mb-3">
           	<div class="col-12 col-sm-12">
-                    <?= anchor('libros', 'Volver lista libros', ['title' => 'Volver a lista de libros', 'class' => 'btn btn-primary']);?>
+                    <?= anchor('libros', 'Volver a lista libros', ['title' => 'Volver a lista de libros', 'class' => 'btn btn-primary']);?>
+          	</div>
+          </section>
+          
+          <section class="row">
+          	<div class="col-12 col-sm-12">
+                    <?= validation_errors('<div class="alert alert-danger" role="alert">','</div>'); ?>
           	</div>
           </section>
           
@@ -52,6 +58,9 @@
                     </div>
                     
                     <hr class="mt-5">
+                    
+                    <?= form_hidden('id_libro', $query->id); ?>
+                    
                     <?= form_submit('submit', 'Actualizar libro', ['class' => 'btn btn-success mt-3 mb-5']) ?>
                     
                     <?= form_close() ?>

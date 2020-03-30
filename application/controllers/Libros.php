@@ -38,11 +38,21 @@ class Libros extends CI_Controller {
     public function adicionar(){
         
         $this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|min_length[3]');
+        $this->form_validation->set_rules('autor', 'Autor', 'trim|required');
+        $this->form_validation->set_rules('precio', 'Precio', 'trim|required');
+        $this->form_validation->set_rules('resumen', 'Resumen', 'trim|required');
         
         if($this->form_validation->run() == TRUE){
             
-            echo '<pre>';
-            print_r($this->input->post());
+            $inputAdicionar['titulo'] = $this->input->post('titulo');
+            $inputAdicionar['autor'] = $this->input->post('autor');
+            $inputAdicionar['precio'] = $this->input->post('precio');
+            $inputAdicionar['resumen'] = $this->input->post('resumen');
+            $inputAdicionar['activo'] = $this->input->post('activo');
+            
+            $this->libros->registrarLibro($inputAdicionar);
+            $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Libro registrado con exito!</div>');
+            redirect('libros','refresh');
             
         }else{
          
@@ -72,11 +82,20 @@ class Libros extends CI_Controller {
         }
         
         $this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|min_length[3]');
-        
+        $this->form_validation->set_rules('autor', 'Autor', 'trim|required');
+        $this->form_validation->set_rules('precio', 'Precio', 'trim|required');
+        $this->form_validation->set_rules('resumen', 'Resumen', 'trim|required');
         if($this->form_validation->run() == TRUE){
             
-            echo '<pre>';
-            print_r($this->input->post());
+            $inputEditar['titulo'] = $this->input->post('titulo');
+            $inputEditar['autor'] = $this->input->post('autor');
+            $inputEditar['precio'] = $this->input->post('precio');
+            $inputEditar['resumen'] = $this->input->post('resumen');
+            $inputEditar['activo'] = $this->input->post('activo');
+            
+            $this->libros->actualizaLibro($inputEditar,['id' => $this->input->post('id_libro')]);
+            $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Libro actualizado con exito!</div>');
+            redirect('libros','refresh');
             
         }else{
          

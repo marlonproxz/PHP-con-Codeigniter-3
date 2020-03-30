@@ -113,6 +113,60 @@ class Libros extends CI_Controller {
     
     public function apagar($id=NULL){
         
+        if(!$id){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, necesitas seleccionar un libro.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $query = $this->libros->capturaLibroID($id);
+        
+        if(!$query){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, libro no encontrado.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $this->libros->eliminarLibro($query->id);
+        $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Libro eliminado con exito!</div>');
+        redirect('libros','refresh');
+    }
+    
+    public function activar($id=NULL){
+        
+        if(!$id){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, necesitas seleccionar un libro.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $query = $this->libros->capturaLibroID($id);
+        
+        if(!$query){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, libro no encontrado.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $this->libros->actualizaLibro(['activo'=>1], ['id' => $query->id]);
+        $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Libro esta activo ahora!</div>');
+        redirect('libros','refresh');
+        
+    }
+    
+    public function desactivar($id=NULL){
+        
+        if(!$id){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, necesitas seleccionar un libro.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $query = $this->libros->capturaLibroID($id);
+        
+        if(!$query){
+            $this->session->set_flashdata('msg','<div class="alert alert-danger" role="alert">Error, libro no encontrado.</div>');
+            redirect('libros', 'refresh');
+        }
+        
+        $this->libros->actualizaLibro(['activo'=>0], ['id' => $query->id]);
+        $this->session->set_flashdata('msg','<div class="alert alert-success" role="alert">Libro esta desactivo ahora!</div>');
+        redirect('libros','refresh');
     }
 
 }

@@ -38,9 +38,9 @@
                                 <?= anchor('libros/editar/' . $l->id, 'Editar', ['title' => 'Editar', 'class' => 'btn btn-primary']); ?>
                                 <?= anchor('libros/eliminar/' . $l->id, 'Eliminar', ['title' => 'Eliminar', 'class' => 'btn btn-danger']); ?>
                                 <?php if ($l->activo == 1) { ?>
-                                    <?= anchor('libros/inactivo/' . $l->id, 'Desactivar', ['title' => 'Desactivar', 'class' => 'btn btn-info']); ?>
+                                    <?= anchor('libros/desactivar/' . $l->id, 'Desactivar', ['title' => 'Desactivar', 'class' => 'btn btn-info']); ?>
                                 <?php } else { ?>
-                                    <?= anchor('libros/activo/' . $l->id, 'Activar', ['title' => 'Activar', 'class' => 'btn btn-info']); ?>
+                                    <?= anchor('libros/activar/' . $l->id, 'Activar', ['title' => 'Activar', 'class' => 'btn btn-info']); ?>
                                 <?php } ?>
                             </td>
                         </tr>
